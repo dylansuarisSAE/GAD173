@@ -1,5 +1,4 @@
 #include "example.h"
-#include "Grid.h"
 
 using namespace sf;
 using namespace std;
@@ -25,37 +24,12 @@ bool Example::start()
 	sf::Vector2u resolution = m_backgroundSprite->getTexture()->getSize();
 	m_backgroundSprite->setScale(float(m_window.getSize().x) / resolution.x, float(m_window.getSize().y) / resolution.y);
 	
-	 normaltileTexture = kage::TextureManager::getTexture("data/brick.png");
-	 greentileTexture = kage::TextureManager::getTexture("data/grass_1024.jpg");
-	 browntileTexture = kage::TextureManager::getTexture("data/brick.png");
+	mapTile.LoadTexture();
+	mapTile.LoadTile();
 
 
 	
-	for (size_t y = 0; y < 5; y++)
-	{
-		for (size_t x = 0; x < 6; x++)
-		{
-			int i = x + y * 6;
-
-			if (map[i] == 1) 
-			{
-				tiles[i].setTexture(*normaltileTexture);
-				;
-			}
-
-			if (map[i] == 2) 
-			{
-				tiles[i].setTexture(*greentileTexture);
-				
-			}
-
-			if (map[i] == 3) 
-			{
-				tiles[i].setTexture(*browntileTexture);
-				
-			}
-		}
-	}
+	
 return true;
 }
 
@@ -72,15 +46,15 @@ void Example::update(float deltaT)
 		m_running = false;
 	}
 
-	if (ImGui::ImageButton(*normaltileTexture, sf::Vector2f(56, 56)))
+	if (ImGui::ImageButton(*mapTile.normaltileTexture, sf::Vector2f(56, 56)))
 	{
 		chosenTileId = 1;
 	}
-	if (ImGui::ImageButton(*greentileTexture, sf::Vector2f(56, 56)))
+	if (ImGui::ImageButton(*mapTile.greentileTexture, sf::Vector2f(56, 56)))
 	{
 		chosenTileId = 2;
 	}
-	if (ImGui::ImageButton(*browntileTexture, sf::Vector2f(56, 56)))
+	if (ImGui::ImageButton(*mapTile.browntileTexture, sf::Vector2f(56, 56)))
 	{
 		chosenTileId = 3;
 	}
@@ -96,20 +70,20 @@ void Example::update(float deltaT)
 
 		if (chosenTileId == 1)
 		{
-			tiles[i].setTexture(*normaltileTexture);
-			map[i] = 1;
+			mapTile.textureTiles[i].setTexture(*mapTile.normaltileTexture);
+			mapTile.map[i] = 1;
 		}
 
 		if (chosenTileId == 2)
 		{
-			tiles[i].setTexture(*greentileTexture);
-			map[i] = 2;
+			mapTile.textureTiles[i].setTexture(*mapTile.greentileTexture);
+			mapTile.map[i] = 2;
 		}
 
 		if (chosenTileId == 3)
 		{
-			tiles[i].setTexture(*browntileTexture);
-			map[i] = 3;
+			mapTile.textureTiles[i].setTexture(*mapTile.browntileTexture);
+			mapTile.map[i] = 3;
 		}
 	}
 	ImGui::End();
@@ -126,7 +100,7 @@ void Example::render()
 
 	for (size_t i = 0; i < 36; i++)
 	{
-		m_window.draw(tiles[i]);
+		m_window.draw(mapTile.textureTiles[i]);
 	}
 
 	horGrid.Render(m_window);

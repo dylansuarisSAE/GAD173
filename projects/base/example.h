@@ -2,6 +2,7 @@
 
 #include "app.h"
 #include "Grid.h"
+#include "map.h"
 
 class Example : public App
 {
@@ -14,23 +15,13 @@ public:
 	virtual void cleanup();
 	static Example &inst();
 
-	sf::Sprite *m_backgroundSprite;
-	sf::Texture* normaltileTexture;
-	sf::Texture* greentileTexture;
-	sf::Texture* browntileTexture;
+	sf::Sprite* m_backgroundSprite;
 
 	int chosenTileId;
 	
-	sf::Sprite tiles[36];
+	
+	tileMap mapTile;
 
-	int map[36] ={
-		1,1,1,1,2,2,
-		1,1,1,2,1,1,
-		1,3,1,2,3,1,
-		1,1,2,1,2,3,
-		1,2,1,3,1,3,
-		1,1,2,2,3,3,
-	};
 
 
 	Grid horGrid;
