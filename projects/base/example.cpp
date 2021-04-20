@@ -1,4 +1,7 @@
 #include "example.h"
+#include "SaveLoad.h"
+#include "map.h "
+
 
 using namespace sf;
 using namespace std;
@@ -45,6 +48,10 @@ void Example::update(float deltaT)
 	{
 		m_running = false;
 	}
+	if (ImGui::Button("Save"))
+	{
+		 SaveLoad::Save("map.txt", mapTile.map, 6, 6);
+	}
 
 	if (ImGui::ImageButton(*mapTile.normaltileTexture, sf::Vector2f(56, 56)))
 	{
@@ -58,15 +65,22 @@ void Example::update(float deltaT)
 	{
 		chosenTileId = 3;
 	}
+	
 
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)
+		&& mousePosition.x >= Grid_Offset_x && mousePosition.x <=Grid_Offset_y * cellLength)
 	{
-		int mouseonCellX = mousePosition.x / cellLength;  //width
-		int mouseonCellY = mousePosition.y / cellHeight;
+		
+		int mouseonCellX = (mousePosition.x - Grid_Offset_x) / cellLength;  //width
+		int mouseonCellY = (mousePosition.y - Grid_Offset_y) / cellHeight;
 
-			int i = mouseonCellX + mouseonCellY * 5;
+		int i = mouseonCellX + mouseonCellY * 5;
+
+		std::cout << i << std::endl;
+		 
+			
 
 		if (chosenTileId == 1)
 		{

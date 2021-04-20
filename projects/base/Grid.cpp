@@ -17,12 +17,12 @@ for (size_t i = 0; i < horLine; i++)
 
 	{
 	x_line[i].setSize(sf::Vector2f(horLine_Length, lineWidth));
-	x_line[i].setPosition(sf::Vector2f(600, 180 + i* cellLength));
+	x_line[i].setPosition(sf::Vector2f(Grid_Offset_x, Grid_Offset_y + i* cellLength));
 	}
 for (size_t i = 0; i < verLine; i++)
 {
 	y_line[i].setSize(sf::Vector2f(lineWidth, verLine_length));
-	y_line[i].setPosition(sf::Vector2f(600 + i * cellHeight, 180 ));
+	y_line[i].setPosition(sf::Vector2f(Grid_Offset_x + i * cellHeight, Grid_Offset_y ));
 }
 }
 
@@ -47,3 +47,4 @@ void Grid::Render(sf::RenderWindow & window)
 		window.draw(y_line[i]);
 	}
 }
+

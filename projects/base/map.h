@@ -4,12 +4,20 @@
 #include <kage2dutil/texture_manager.h>
 #include "Grid.h"
 
+#define cell_count_x 6
+#define cell_count_y 6
+
+
 class tileMap
 {
 public:
 
-	tileMap();
-	~tileMap();
+	tileMap::tileMap() {
+
+	}
+	tileMap:: ~tileMap() {
+
+	}
 
 	void LoadTexture();
 

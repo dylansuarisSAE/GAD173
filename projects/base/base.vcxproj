@@ -101,6 +101,7 @@
     <ClInclude Include="example.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="SaveLoad.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="app.cpp" />
@@ -109,6 +110,7 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="SaveLoad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dev\components\kage2dutil\kage2dutil.vcxproj">

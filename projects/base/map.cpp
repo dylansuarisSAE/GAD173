@@ -12,11 +12,11 @@ void tileMap::LoadTexture()
 
 void tileMap::LoadTile()
 {
-	for (size_t y = 0; y < 5; y++)
+	for (size_t y = 0; y < cell_count_y; y++)
 	{
-		for (size_t x = 0; x < 6; x++)
+		for (size_t x = 0; x < cell_count_x; x++)
 		{
-			int i = x + y * 6;
+			int i = x + y * cell_count_x;
 
 			if (map[i]==1)
 			{
@@ -35,7 +35,7 @@ void tileMap::LoadTile()
 				textureTiles[i].setTexture(*browntileTexture);
 
 			}
-			textureTiles[i].setPosition(sf::Vector2f(600 + x * cellLength, 180 + y * cellHeight));
+			textureTiles[i].setPosition(sf::Vector2f(Grid_Offset_x + x * cellLength, Grid_Offset_y + y * cellHeight));
 		}
 		std::cout << "/n";
 	}

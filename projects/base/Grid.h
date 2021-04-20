@@ -11,6 +11,10 @@
 
 #define cellLength 80
 
+#define Grid_Offset_x 600
+#define Grid_Offset_y 180
+
+
 class Grid
 {
 	void Update();
@@ -19,8 +23,7 @@ class Grid
 public:
 	Grid();
 	~Grid();
-
-
+ 
 	void Render(sf::RenderWindow & window);
 
 

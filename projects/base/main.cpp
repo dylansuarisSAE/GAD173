@@ -3,6 +3,7 @@
 #include "example.h"
 
 using namespace std;
+void SaveLoad();
 
 int main()
 {
@@ -10,3 +11,8 @@ int main()
 
     return 0;
 }
+void SaveLoad()
+{
+
+}
+
