@@ -50,7 +50,11 @@ void Example::update(float deltaT)
 	}
 	if (ImGui::Button("Save"))
 	{
-		 SaveLoad::Save("map.txt", mapTile.map, 6, 6);
+		 SaveLoad::Save("bin/data/map.txt", mapTile.map, 6, 6);
+	}
+	if (ImGui::Button("Load"))
+	{
+		SaveLoad::Load("map.txt");
 	}
 
 	if (ImGui::ImageButton(*mapTile.normaltileTexture, sf::Vector2f(56, 56)))
@@ -69,14 +73,15 @@ void Example::update(float deltaT)
 
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)
-		&& mousePosition.x >= Grid_Offset_x && mousePosition.x <=Grid_Offset_y * cellLength)
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
+		&& mousePosition.x >= Grid_Offset_x && mousePosition.x <= Grid_Offset_x + cellLength * cell_count_x
+		&& mousePosition.y >= Grid_Offset_y && mousePosition.y <= Grid_Offset_y + cellHeight * cell_count_y)
 	{
 		
 		int mouseonCellX = (mousePosition.x - Grid_Offset_x) / cellLength;  //width
 		int mouseonCellY = (mousePosition.y - Grid_Offset_y) / cellHeight;
 
-		int i = mouseonCellX + mouseonCellY * 5;
+		int i = mouseonCellX + mouseonCellY * cell_count_x;
 
 		std::cout << i << std::endl;
 		 
