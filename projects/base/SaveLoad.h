@@ -11,7 +11,7 @@ public:
 	~SaveLoad();
 
 	static void Save(std::string filename, int* buffer, int X_Count, int Y_Count);
-	static void SaveLoad::Load(std::string filename);
+	static void SaveLoad::Load(std::string filename, int* buffer, int size);
 
 
 };

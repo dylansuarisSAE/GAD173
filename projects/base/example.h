@@ -3,6 +3,7 @@
 #include "app.h"
 #include "Grid.h"
 #include "map.h"
+#include "SceneManager.h"
 
 class Example : public App
 {
@@ -18,12 +19,10 @@ public:
 	sf::Sprite* m_backgroundSprite;
 
 	int chosenTileId;
-	
-	
+
+	SpriteAnimator spriteAnimator;
+	SceneManager sceneManager;
 	tileMap mapTile;
-
-
-
 	Grid horGrid;
 	Grid verGrid;
 };

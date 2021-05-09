@@ -1,7 +1,9 @@
 #include "example.h"
 #include "SaveLoad.h"
 #include "map.h "
-
+#include "SpriteAnimator.h"
+#include "MainMenu.h"
+#include "LevelOne.h"
 
 using namespace sf;
 using namespace std;
@@ -29,6 +31,12 @@ bool Example::start()
 	
 	mapTile.LoadTexture();
 	mapTile.LoadTile();
+	mapTile.SetTilesFromMap();
+	spriteAnimator.init();
+	//spriteAnimator.Load(File name );
+	sceneManager.Addscene(new MainMenu());
+	sceneManager.Addscene(new LevelOne());
+	sceneManager.Load();
 
 
 	
@@ -36,11 +44,20 @@ bool Example::start()
 return true;
 }
 
+
 void Example::update(float deltaT)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && m_window.hasFocus())
 	{
 		m_running = false;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && m_window.hasFocus())
+	{
+		sceneManager.Loadscene(0);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && m_window.hasFocus())
+	{
+		sceneManager.Loadscene(1);
 	}
 
 	ImGui::Begin("Kage2D");
@@ -54,7 +71,9 @@ void Example::update(float deltaT)
 	}
 	if (ImGui::Button("Load"))
 	{
-		SaveLoad::Load("map.txt");
+		SaveLoad::Load("map.txt", mapTile.map, 36);
+		
+		mapTile.SetTilesFromMap();
 	}
 
 	if (ImGui::ImageButton(*mapTile.normaltileTexture, sf::Vector2f(56, 56)))
@@ -69,6 +88,7 @@ void Example::update(float deltaT)
 	{
 		chosenTileId = 3;
 	}
+	sceneManager.Update();
 	
 
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
@@ -124,6 +144,8 @@ void Example::render()
 
 	horGrid.Render(m_window);
 	verGrid.Render(m_window);
+	sceneManager.Render(m_window);
+	
 }
 
 void Example::cleanup()

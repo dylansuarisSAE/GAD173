@@ -14,8 +14,6 @@ SaveLoad::~SaveLoad() {
 
 }
 
-
-
 void SaveLoad::Save(string filename, int*buffer, int X_Count, int Y_Count)
 {
 
@@ -36,12 +34,13 @@ void SaveLoad::Save(string filename, int*buffer, int X_Count, int Y_Count)
 	myfile.close();
 }
 
-void SaveLoad::Load(std::string filename)
+void SaveLoad::Load(std::string filename, int* buffer, int size)
 {
 	string line;
 	ifstream myfile(filename);
 	int CutStart = 0;
 	int commaIndex = -1;
+	int i = 0;
 
 	if (myfile.is_open())
 	{
@@ -53,14 +52,17 @@ void SaveLoad::Load(std::string filename)
 				CutStart = commaIndex + 1;
 				commaIndex = line.find(',', commaIndex + 1);
 
-				string numStr = line.substr(CutStart, commaIndex - CutStart);
-				int num = std::stoi(numStr);
-				std::cout << num << std::endl;
 
 				if (commaIndex < 0)
 					break;
 
+				string numStr = line.substr(CutStart, commaIndex - CutStart);
+				buffer [i] = std::stoi(numStr);
+				i++;
+		
 			}
+
+			std::cout << std::endl;
 		}
 		myfile.close();
 

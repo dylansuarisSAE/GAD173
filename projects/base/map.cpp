@@ -1,5 +1,6 @@
 #include "map.h"
 #include <iostream>
+#
 
 
 void tileMap::LoadTexture()
@@ -9,9 +10,8 @@ void tileMap::LoadTexture()
 	browntileTexture = kage::TextureManager::getTexture("data/water.png");
 
 }
+void tileMap::SetTilesFromMap(){
 
-void tileMap::LoadTile()
-{
 	for (size_t y = 0; y < cell_count_y; y++)
 	{
 		for (size_t x = 0; x < cell_count_x; x++)
@@ -39,5 +39,10 @@ void tileMap::LoadTile()
 		}
 		std::cout << "/n";
 	}
+}
+
+void tileMap::LoadTile()
+{
+	
 
 }
