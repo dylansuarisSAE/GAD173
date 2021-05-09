@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene()
+Scene::Scene():isRunning(false), isLoaded(false)
 {
 }
 
@@ -14,8 +14,8 @@ void Scene::init()
 
 void Scene::Load()
 {
-	IsRunning = true;
-	IsLoaded = true;
+	isRunning = true;
+	isLoaded = true;
 }
 
 void Scene::update()

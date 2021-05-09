@@ -98,8 +98,16 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\base\LevelOne.h" />
+    <ClInclude Include="..\base\MainMenu.h" />
+    <ClInclude Include="..\base\map.h" />
+    <ClInclude Include="..\base\SaveLoad.h" />
+    <ClInclude Include="..\base\Scene.h" />
+    <ClInclude Include="..\base\SceneManager.h" />
+    <ClInclude Include="..\base\SpriteAnimator.h" />
     <ClInclude Include="app.h" />
     <ClInclude Include="example.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="Rabbit.h">
       <SubType>
       </SubType>
@@ -109,6 +117,7 @@
     <ClCompile Include="app.cpp" />
     <ClCompile Include="dependencies.cpp" />
     <ClCompile Include="example.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rabbit.cpp">
       <SubType>

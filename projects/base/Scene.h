@@ -1,15 +1,16 @@
 #pragma once
 #include <iostream>
 #include "SFML/Graphics.hpp"
+#include "SpriteAnimator.h"
 
 class Scene
 {
+private:
+	bool isRunning;
+	bool isLoaded;
+
+
 public:
-	bool IsRunning;
-	bool IsLoaded;
-
-
-
 	Scene();
 	~Scene();
 
@@ -18,6 +19,6 @@ public:
 	virtual void update();
 	virtual void Render(sf::RenderWindow& window);
 
-	inline bool IsLoaded() { return IsLoaded; }
+	inline bool IsLoaded() { return isLoaded; }
 };
 
