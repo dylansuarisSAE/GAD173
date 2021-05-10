@@ -1,39 +1,16 @@
-
-#include "SaveLoad.h"
-
-
-
+#include "Load.h"
 using namespace std;
-SaveLoad::SaveLoad() {
 
-}
-
-
-SaveLoad::~SaveLoad() {
-
-}
-
-void SaveLoad::Save(string filename, int*buffer, int X_Count, int Y_Count)
+Load::Load()
 {
 
-	ofstream myfile;
-	myfile.open(filename);
+}
+Load::~Load()
+{
 
-		for (size_t y = 0; y < Y_Count; y++)
-		{
-			for (size_t x = 0; x < X_Count; x++)
-			{
-				int i = x + y * X_Count;
-				myfile << buffer[i] << ", ";
-			}
-
-			myfile << std::endl;
-		}
-
-	myfile.close();
 }
 
-void SaveLoad::Load(std::string filename, int* buffer, int size)
+void Load::Loadlevel(std::string filename, int* buffer, int size)
 {
 	string line;
 	ifstream myfile(filename);
@@ -45,8 +22,8 @@ void SaveLoad::Load(std::string filename, int* buffer, int size)
 		int commaIndex = -1;
 		while (getline(myfile, line))
 		{
-			
-			cout << line << ' \n';
+
+			cout << line << "\n"; 
 			while (true)
 			{
 				CutStart = commaIndex + 1; // cuts after the comma
@@ -57,9 +34,9 @@ void SaveLoad::Load(std::string filename, int* buffer, int size)
 					break;
 
 				string numStr = line.substr(CutStart, commaIndex - CutStart); //which index to cut from and how many characters to cut   //substr has 2 parameters the position and how many (pos,len)
-				buffer [i] = std::stoi(numStr);
+				buffer[i] = std::stoi(numStr);
 				i++;
-		
+
 			}
 
 			std::cout << std::endl;
@@ -70,4 +47,3 @@ void SaveLoad::Load(std::string filename, int* buffer, int size)
 	else
 		cout << "Unable to Open file";
 }
-

@@ -1,6 +1,4 @@
 #include "example.h"
-#include "SaveLoad.h"
-#include "map.h "
 #include "SpriteAnimator.h"
 #include "MainMenu.h"
 #include "LevelOne.h"
@@ -8,7 +6,7 @@
 using namespace sf;
 using namespace std;
 
-Example::Example() : App(), horGrid(), verGrid()
+Example::Example() : App()
 {
 
 }
@@ -29,11 +27,10 @@ bool Example::start()
 	sf::Vector2u resolution = m_backgroundSprite->getTexture()->getSize();
 	m_backgroundSprite->setScale(float(m_window.getSize().x) / resolution.x, float(m_window.getSize().y) / resolution.y);
 	
-	mapTile.LoadTexture();
-	mapTile.LoadTile();
-	mapTile.SetTilesFromMap();
+	mapTile.LoadTexture();//loads textures
+	mapTile.LoadTile();//loads the tiles
+	mapTile.SetTilesFromMap();//places tiles on grid
 	spriteAnimator.init();
-	//spriteAnimator.Load(File name );
 	sceneManager.Addscene(new MainMenu());
 	sceneManager.Addscene(new LevelOne());
 	sceneManager.Load();
@@ -65,16 +62,7 @@ void Example::update(float deltaT)
 	{
 		m_running = false;
 	}
-	if (ImGui::Button("Save"))
-	{
-		 SaveLoad::Save("bin/data/map.txt", mapTile.map, 6, 6);
-	}
-	if (ImGui::Button("Load"))
-	{
-		SaveLoad::Load("map.txt", mapTile.map, 36);
-		
-		mapTile.SetTilesFromMap();
-	}
+	
 
 	if (ImGui::ImageButton(*mapTile.normaltileTexture, sf::Vector2f(56, 56)))
 	{
@@ -88,6 +76,7 @@ void Example::update(float deltaT)
 	{
 		chosenTileId = 3;
 	}
+
 	sceneManager.Update();
 	
 
@@ -124,6 +113,16 @@ void Example::update(float deltaT)
 			mapTile.textureTiles[i].setTexture(*mapTile.browntileTexture);
 			mapTile.map[i] = 3;
 		}
+	}
+	if (ImGui::Button("Save"))
+	{
+		SaveLoad::Save("map.txt", mapTile.map, 6, 6);
+	}
+	if (ImGui::Button("Load"))
+	{
+		SaveLoad::Load("map.txt", mapTile.map, 36);
+
+		mapTile.SetTilesFromMap();
 	}
 	ImGui::End();
 }
